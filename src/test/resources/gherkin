@@ -1,0 +1,18 @@
+Feature: logowanie do portalu edukacyjnego Coders Lab https://lms.coderslab.pl
+
+Scenario: logging on to educational portal Coders Lab at "https://lms.coderslab.pl"
+GIVEN: an open browser page with address "https://lms.coderslab.pl/login"
+WHEN: entering existing user data in "E-mail:" and "Hasło" input boxes
+AND: clicking on "ZALOGUJ" button
+THEN: successfully being redirected to page address "https://lms.coderslab.pl/courses" with user's courses displayed
+
+
+Feature: uruchomienie pierwszej prezentacji z preworku Java na kursie testera automatyzującego.
+
+Scenario: starting the first Java prework presentation from Automation Tester course
+GIVEN: being logged on as an existing user on the page "https://lms.coderslab.pl/login" with user's courses displayed
+WHEN: clicking on box "Tester automatyzujący"
+AND: being redirected to page "https://lms.coderslab.pl/course/ONL_TEA_W_21"
+AND: clicking on "POKAŻ ROZDZIAŁY" button within "00 Prework" section (first section on the page)
+AND: clicking on "Wstęp do kursu" box
+THEN: successfully being redirected to a page with "Wstęp" presentation being showed
