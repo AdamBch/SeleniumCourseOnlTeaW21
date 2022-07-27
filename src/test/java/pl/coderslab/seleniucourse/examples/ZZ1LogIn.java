@@ -45,11 +45,14 @@ public class ZZ1LogIn {
     @FindBy(css = ".btn.btn-primary.float-xs-right")
     private WebElement saveButton;
 
-    @FindBy(css = ".alert.alert-success")
-    private WebElement addressSuccessMessage;
+    //@FindBy(css = ".alert.alert-success")
+    //private WebElement addressSuccessMessage;
 
-    @FindBy(className = "address-body")
-    List<WebElement> allAddressBodies;
+    //@FindBy(css = ".col-lg-4.col-md-6.col-sm-6")
+    //List<WebElement> allAddressBodies;
+
+    @FindBy(id = "content")
+    List<WebElement> allContent;
 
     public ZZ1LogIn(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -84,12 +87,27 @@ public class ZZ1LogIn {
     public void createNewAddress(){
         saveButton.click();
     }
-    public void newAddressCheck(String address) {
-        for (int i = 0; i < allAddressBodies.size(); i++) {
-            WebElement currentAddressElement = allAddressBodies.get(i);
+    public void newAddressCheck(String alias, String address, String city, String postcode, String country, String phone) {
+        for (int i = 0; i < allContent.size(); i++) {
+            WebElement currentAddressElement = allContent.get(i);
+            if (!currentAddressElement.getText().toLowerCase().contains(alias.toLowerCase())) {
+                fail(String.format("Alias %s NOT found in existing addresses", alias));
+            }
             if (!currentAddressElement.getText().toLowerCase().contains(address.toLowerCase())) {
                 fail(String.format("Address %s NOT found in existing addresses", address));
             }
-
+            if (!currentAddressElement.getText().toLowerCase().contains(city.toLowerCase())) {
+                fail(String.format("City %s NOT found in existing addresses", city));
             }
-        }}
+            if (!currentAddressElement.getText().toLowerCase().contains(postcode.toLowerCase())) {
+                fail(String.format("Zip code %s NOT found in existing addresses", postcode));
+            }
+            if (!currentAddressElement.getText().toLowerCase().contains(country.toLowerCase())) {
+                fail(String.format("Country %s NOT found in existing addresses", country));
+            }
+            if (!currentAddressElement.getText().toLowerCase().contains(phone.toLowerCase())) {
+                fail(String.format("Phone %s NOT found in existing addresses", phone));
+            }
+        }
+
+}}

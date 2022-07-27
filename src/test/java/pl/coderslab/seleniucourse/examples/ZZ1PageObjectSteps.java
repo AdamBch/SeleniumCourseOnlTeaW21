@@ -47,7 +47,8 @@ public class ZZ1PageObjectSteps {
     public void createNewAddress(){
         zz1LogIn.createNewAddress();
     }
-    @And("^Verify the new address (.*)$")
-    public void addressContainPhrase(String address) {
+    @And("^Verify the new address (.*), (.*), (.*), (.*), (.*), (.*)$")
+    public void addressContainPhrase(String alias, String address, String city, String postcode, String country, String phone) {
+        zz1LogIn.newAddressCheck(alias, address, city, postcode, country, phone);
             }
 }

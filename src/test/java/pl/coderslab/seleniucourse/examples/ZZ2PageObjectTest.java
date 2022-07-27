@@ -1,10 +1,6 @@
 package pl.coderslab.seleniucourse.examples;
 
-import io.cucumber.java.en.And;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -13,8 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
+
+import static pl.coderslab.seleniucourse.Tools.sleep;
 
 public class ZZ2PageObjectTest {
     @Test
@@ -22,6 +20,7 @@ public class ZZ2PageObjectTest {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver_win32/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=authentication&back=my-account");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         WebElement emailSignInPanel = driver.findElement(By.name("email"));
         emailSignInPanel.clear();
         emailSignInPanel.sendKeys("vkgcutygevfffkqrap@kvhrs.com");
@@ -45,11 +44,15 @@ public class ZZ2PageObjectTest {
 
         Select drpSize = new Select(driver.findElement(By.id("group_1")));
         drpSize.selectByVisibleText("M");
+        sleep(500);
 
         WebElement addQuantityButton = driver.findElement(By.cssSelector(".btn.btn-touchspin.js-touchspin.bootstrap-touchspin-up"));
         addQuantityButton.click();
+        sleep(200);
         addQuantityButton.click();
+        sleep(200);
         addQuantityButton.click();
+        sleep(200);
         addQuantityButton.click();
 
         WebElement addToCartButton = driver.findElement(By.cssSelector(".btn.btn-primary.add-to-cart"));
